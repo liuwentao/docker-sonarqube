@@ -17,7 +17,7 @@ RUN set -eux; \
   curl -LfsS https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub; \
   SGERRAND_RSA_SHA256="823b54589c93b02497f1ba4dc622eaef9c813e6b0f0ebbb2f771e32adf9f4ef2"; \
   echo "${SGERRAND_RSA_SHA256} */etc/apk/keys/sgerrand.rsa.pub" | sha256sum -c - ; \
-  gpg --keyserver hkp://pgp.mit.edu --recv-key 68B3537F39A313B3E574D06777193F152BDBE6A6; \
+  gpg --keyserver hkps://pgp.mit.edu:443 --recv-key 68B3537F39A313B3E574D06777193F152BDBE6A6; \
   curl -LfsS ${ALPINE_GLIBC_REPO}/${GLIBC_VER}-arm64/glibc-${GLIBC_VER}.apk > /tmp/glibc-${GLIBC_VER}.apk; \
   apk add --allow-untrusted --no-cache /tmp/glibc-${GLIBC_VER}.apk; \
   curl -LfsS ${ALPINE_GLIBC_REPO}/${GLIBC_VER}-arm64/glibc-bin-${GLIBC_VER}.apk > /tmp/glibc-bin-${GLIBC_VER}.apk; \
@@ -86,7 +86,7 @@ RUN set -eux; \
 #
 # SonarQube setup
 #
-ARG SONARQUBE_VERSION=8.9.4.50575
+ARG SONARQUBE_VERSION=8.9.5.50698
 ARG SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-${SONARQUBE_VERSION}.zip
 ENV JAVA_HOME=/opt/java/openjdk \
   PATH="/opt/java/openjdk/bin:$PATH" \
