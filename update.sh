@@ -5,6 +5,8 @@ shopt -s globstar
 # Reset the Option Index in case getopts has been used previously in the same shell.
 OPTIND=1 
 
+
+
 function show_help() {
     echo "update.sh help"
     echo ""
